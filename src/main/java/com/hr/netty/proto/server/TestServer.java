@@ -1,6 +1,5 @@
-package com.hr.netty.proto;
+package com.hr.netty.proto.server;
 
-import com.hr.netty.three.server.MyChatServerIniterizer;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.EventLoopGroup;
