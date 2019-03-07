@@ -8,13 +8,23 @@ import io.netty.channel.SimpleChannelInboundHandler;
  * @author 胡冉
  * @Description: TODO
  * @date 2019/3/516:18
- * @copyright {@link www.hndfsj.com}
  */
-public class TestHandler extends SimpleChannelInboundHandler<DataInfo.Student>{
+public class TestHandler extends SimpleChannelInboundHandler<DataInfo.MyMessage> {
     @Override
-    protected void channelRead0(ChannelHandlerContext ctx, DataInfo.Student msg) throws Exception {
-        System.out.println(msg.getAddress());
-        System.out.println(msg.getName());
-        System.out.println(msg.getAge());
+    protected void channelRead0(ChannelHandlerContext ctx, DataInfo.MyMessage msg) throws Exception {
+        DataInfo.MyMessage.DataType dataType = msg.getDataType();
+        if (dataType == DataInfo.MyMessage.DataType.PersonType) {
+            DataInfo.Person person = msg.getPerson();
+            System.out.println(person.getAge());
+            System.out.println(person.getName());
+        } else if (dataType == DataInfo.MyMessage.DataType.DogType) {
+            System.out.println(msg.getDog().getAge());
+            System.out.println(msg.getDog().getName());
+        } else {
+            System.out.println(msg.getStudent().getAge());
+            System.out.println(msg.getStudent().getName());
+            System.out.println(msg.getStudent().getAddress());
+
+        }
     }
 }
